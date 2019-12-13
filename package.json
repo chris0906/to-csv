@@ -1,0 +1,18 @@
+{
+  "name": "to-csv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "abi-decoder": "^2.2.2",
+    "csv-writer": "^1.5.0",
+    "mongodb": "^3.4.0",
+    "web3": "^1.2.4"
+  }
+}
