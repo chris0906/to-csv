@@ -5,14 +5,19 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+const Web3 = require("web3");
+const web3 = new Web3("http://59.51.127.19:8545");
 
 rl.setPrompt("请输入钱包地址:");
 rl.prompt();
 
 rl.on("line", async function(line) {
+  let code;
+  if (web3.utils.isAddress(line)) code = await web3.eth.getCode(line);
   if (line === "close") rl.close();
   else if (line.substring(0, 2) !== "0x" || line.length !== 42)
     console.log("地址格式不正确");
+  else if (code.length > 2) console.log("请勿输入合约地址");
   else {
     const collection = db.collection("transactions");
     const fromResult = await collection
