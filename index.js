@@ -28,7 +28,14 @@ rl.on("line", async function(line) {
       .find({ to: line })
       .collation({ locale: "en", strength: 2 })
       .toArray();
-    const result = fromResult.concat(toResult);
+    const transferCode = "0xa9059cbb000000000000000000000000";
+    const inputData = transferCode + line.toLowerCase().substr(2);
+    const inputResult = await collection
+      .find({
+        input: eval("/^" + inputData + "/")
+      })
+      .toArray();
+    const result = fromResult.concat(toResult).concat(inputResult);
     const finalRes = await transformData(result);
     const csvWriter = require("./startup/csvWriter")(line);
     const startTime = Math.round(new Date() / 1000);

@@ -5,8 +5,8 @@ const Web3 = require("web3");
 const web3 = new Web3("http://59.51.127.19:8545");
 
 module.exports = async function(arr) {
-  let from, to, value, time, symbol;
   const newRes = arr.map(async element => {
+    let from, to, value, time, symbol;
     if (element.input === "0x" && element.value !== "0") {
       //eth
       from = element.from;
