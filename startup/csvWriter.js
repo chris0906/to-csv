@@ -7,7 +7,8 @@ module.exports = function(path) {
       { id: "from", title: "FROM" },
       { id: "to", title: "TO" },
       { id: "value", title: "VALUE" },
-      { id: "date", title: "DATE" }
+      { id: "symbol", title: "SYMBOL" },
+      { id: "time", title: "TIME" }
     ]
   });
   return csvWriter;
