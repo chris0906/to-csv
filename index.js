@@ -38,12 +38,19 @@ rl.on("line", async function(line) {
     const result = fromResult.concat(toResult).concat(inputResult);
     const finalRes = await transformData(result);
     const csvWriter = require("./startup/csvWriter")(line);
-    const startTime = Math.round(new Date() / 1000);
-    csvWriter.writeRecords(finalRes).then(() => {
-      console.log("csv file has been exported");
-      const finishTime = Math.round(new Date() / 1000);
-      console.log(`${finishTime - startTime} seconds was spent`);
-    });
+    const startTime = new Date();
+    await csvWriter.writeRecords(finalRes);
+    const finishTime = new Date();
+    console.log(
+      `csv file has been exported:${finishTime -
+        startTime} millseconds was spent`
+    );
+
+    // csvWriter.writeRecords(finalRes).then(() => {
+    //   console.log("csv file has been exported");
+    //   const finishTime = new Date();
+    //   console.log(`${finishTime - startTime} millseconds was spent`);
+    // });
   }
   rl.prompt();
 });
